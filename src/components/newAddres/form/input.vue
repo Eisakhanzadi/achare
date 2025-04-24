@@ -1,24 +1,24 @@
 <template>
-  <div class="mb-3">
-    <div class="d-flex align-items-center justify-content-between">
-      <label :for="id" class="form-label ">{{ title }} <span
+  <div class="mb-3" >
+    <div class="d-flex align-items-baseline justify-content-between">
+      <label :for="id" :class="{'form-label w-100':type != 'checkbox' && type !='radio' ,'form-check-label':type == 'checkbox' || type =='radio'}">{{ title }} <span
         v-if="requireInput">(اختیاری)</span></label>
-      <span class="require" v-if="requireInput">*با پیش شماره </span>
+      <span class="require text-nowrap" v-if="requireInput">*با پیش شماره </span>
     </div>
     <div class="position-relative">
       <input ref="inputElement" v-model.trim="inputValue" @input="handleInput" :id="id"
              :type="type"
-             class="form-control" :placeholder="placeholder">
-      <button @click="clearData"
+             :class="{'form-control w-100':type != 'checkbox' && type !='radio' , 'form-check-input w-fit':type == 'checkbox' || type =='radio'}" :placeholder="placeholder">
+      <button v-if="type!='checkbox' && type!='radio'" @click="clearData"
               class="close position-absolute border-0 outline-0 rounded-circle"></button>
     </div>
     <span v-if="!validation" class="error">{{ error }}</span>
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
-const { title, placeholder, error, type, id, validation, minLength, requireInput } = defineProps({
+const { title, placeholder, error, type, id, validation, minLength, requireInput , checked , gender } = defineProps({
   error: {
     type: String,
     required: true,
@@ -58,6 +58,14 @@ const { title, placeholder, error, type, id, validation, minLength, requireInput
     type: String,
     required: true,
     default: 'اینجا را تکمیل کنید '
+  },
+  checked:{
+    default:false,
+    type:Boolean
+  },
+  gender:{
+    default:'male',
+    type:String
   }
 })
 const inputElement = ref<HTMLInputElement>()
@@ -88,6 +96,17 @@ function clearData() {
   }
   inputValue.value = ''
 }
+onMounted(()=>{
+  if (type === 'checkbox' || type === 'radio') {
+    inputElement.value?.setAttribute('checked', checked)
+    inputElement.value?.setAttribute('value', gender)
+    inputElement.value?.setAttribute('name', 'gender')
+  }
+  if (type === 'radio') {
+    inputElement.value?.setAttribute('value', gender)
+    inputElement.value?.setAttribute('name', 'gender')
+  }
+})
 
 watch(() => validation, () => {
   if (!validation) {
@@ -109,14 +128,16 @@ label {
     font-weight: 500;
   }
 }
-
+svg{
+  fill: red;
+}
 span.require {
   color: var(--dark-gray-color);
   font-weight: 400;
   font-size: 10px;
 }
 
-input {
+input:not([type="checkbox"]):not([type="radio"]) {
   box-shadow: unset !important;
   border-radius: 5px;
   font-weight: 700;
