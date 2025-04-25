@@ -2,7 +2,7 @@
   <div class="mb-3">
     <div v-if="type!='checkbox' && type!='radio'">
       <div class="d-flex align-items-baseline justify-content-between">
-        <label :for="id" class="form-label w-100">{{ title }} <span v-if="requireInput">(اختیاری)</span></label>
+        <label :for="id" class="form-label cursor-pointer w-100">{{ title }} <span v-if="requireInput">(اختیاری)</span></label>
         <span class="require text-nowrap" v-if="requireInput">*با پیش شماره </span>
       </div>
       <div  class="position-relative">
@@ -15,7 +15,7 @@
       <span ref="errorElement" :class="{'d-block':!validation , 'd-none':validation}" class="error ">{{ error }}</span>
     </div>
     <div v-if="type=='checkbox' || type=='radio'">
-      <label :for="id" class="form-check-label d-flex align-items-center gap-2">{{ title }}
+      <label :for="id" class="form-check-label cursor-pointer d-flex align-items-center gap-2">{{ title }}
           <input ref="inputElement" v-model="inputValue" @input="handleInput" :id="id" :name="name"
                  :type="type" :value="value" :checked="checked"
                  class="form-check-input w-fit d-none">
