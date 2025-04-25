@@ -1,28 +1,53 @@
 <template>
-  <div class="mb-3" >
-    <div class="d-flex align-items-baseline justify-content-between">
-      <label :for="id" :class="{'form-label w-100':type != 'checkbox' && type !='radio' ,'form-check-label':type == 'checkbox' || type =='radio'}">{{ title }} <span
-        v-if="requireInput">(اختیاری)</span></label>
-      <span class="require text-nowrap" v-if="requireInput">*با پیش شماره </span>
+  <div class="mb-3">
+    <div v-if="type!='checkbox' && type!='radio'">
+      <div class="d-flex align-items-baseline justify-content-between">
+        <label :for="id" class="form-label w-100">{{ title }} <span v-if="requireInput">(اختیاری)</span></label>
+        <span class="require text-nowrap" v-if="requireInput">*با پیش شماره </span>
+      </div>
+      <div  class="position-relative">
+        <input ref="inputElement" v-model.trim="inputValue" @input="handleInput" :id="id"
+               :type="type"
+               class="form-control w-100" :placeholder="placeholder">
+        <button @click.prevent="clearData"
+                class="close position-absolute border-0 outline-0 rounded-circle"></button>
+      </div>
+      <span ref="errorElement" :class="{'d-block':!validation , 'd-none':validation}" class="error ">{{ error }}</span>
     </div>
-    <div class="position-relative">
-      <input ref="inputElement" v-model.trim="inputValue" @input="handleInput" :id="id"
-             :type="type"
-             :class="{'form-control w-100':type != 'checkbox' && type !='radio' , 'form-check-input w-fit':type == 'checkbox' || type =='radio'}" :placeholder="placeholder">
-      <button v-if="type!='checkbox' && type!='radio'" @click="clearData"
-              class="close position-absolute border-0 outline-0 rounded-circle"></button>
+    <div v-if="type=='checkbox' || type=='radio'">
+      <label :for="id" class="form-check-label d-flex align-items-center gap-2">{{ title }}
+          <input ref="inputElement" v-model="inputValue" @input="handleInput" :id="id" :name="name"
+                 :type="type" :value="value" :checked="checked"
+                 class="form-check-input w-fit d-none">
+          <span class="checked"></span>
+      </label>
     </div>
-    <span v-if="!validation" class="error">{{ error }}</span>
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
-const { title, placeholder, error, type, id, validation, minLength, requireInput , checked , gender } = defineProps({
+const {
+  title,
+  placeholder,
+  error,
+  type,
+  id,
+  validation,
+  minLength,
+  requireInput,
+  checked,
+  value,
+  name
+} = defineProps({
   error: {
     type: String,
     required: true,
     default: 'لطفا کادر بالا را پرکنید'
+  },
+  name: {
+    type: String,
+    default: ''
   },
   requireInput: {
     type: Boolean,
@@ -31,7 +56,6 @@ const { title, placeholder, error, type, id, validation, minLength, requireInput
   },
   validation: {
     type: Boolean,
-    required: true,
     default: true
   },
   minLength: {
@@ -59,18 +83,19 @@ const { title, placeholder, error, type, id, validation, minLength, requireInput
     required: true,
     default: 'اینجا را تکمیل کنید '
   },
-  checked:{
-    default:false,
-    type:Boolean
+  checked: {
+    default: false,
+    type: Boolean
   },
-  gender:{
-    default:'male',
-    type:String
+  value: {
+    default: '',
+    type: String
   }
 })
 const inputElement = ref<HTMLInputElement>()
+const errorElement = ref<HTMLInputElement>()
 const emit = defineEmits(['sendData'])
-const inputValue = ref<string>('')
+const inputValue = ref<string>(value)
 const timer = ref<unknown>()
 const handleInput = () => {
   clearTimeout(timer.value)
@@ -85,6 +110,7 @@ function successValidation() {
   }
   if (inputValue.value.length >= Number(minLength)) {
     inputElement.value?.classList.add('validation-success')
+    if (errorElement.value?.classList.contains('d-blick')){}
   } else {
     inputElement.value?.classList.remove('validation-success')
   }
@@ -96,17 +122,6 @@ function clearData() {
   }
   inputValue.value = ''
 }
-onMounted(()=>{
-  if (type === 'checkbox' || type === 'radio') {
-    inputElement.value?.setAttribute('checked', checked)
-    inputElement.value?.setAttribute('value', gender)
-    inputElement.value?.setAttribute('name', 'gender')
-  }
-  if (type === 'radio') {
-    inputElement.value?.setAttribute('value', gender)
-    inputElement.value?.setAttribute('name', 'gender')
-  }
-})
 
 watch(() => validation, () => {
   if (!validation) {
@@ -128,9 +143,11 @@ label {
     font-weight: 500;
   }
 }
-svg{
+
+svg {
   fill: red;
 }
+
 span.require {
   color: var(--dark-gray-color);
   font-weight: 400;
@@ -208,5 +225,32 @@ button.close {
 
 .validation-field {
   border: var(--error-color) 1px solid !important;
+}
+
+/* checkbox */
+.checked {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--primary-color);
+  border-radius: 100%;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    visibility: hidden;
+  }
+}
+
+:is(input[type=checkbox] , input[type=radio]):checked + span.checked::after {
+  visibility: visible;
 }
 </style>

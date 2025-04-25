@@ -6,18 +6,16 @@ import Header from '@/components/header/index.vue'
 <template>
 <div class="outer-container">
   <Header/>
-  <main class="container-sm">
+  <main>
     <RouterView />
   </main>
 </div>
 </template>
 
 <style scoped lang="scss">
+
 .outer-container {
   background: var(--light-color);
-  main{
-    min-height: 100vh;
-  }
 }
 
 
