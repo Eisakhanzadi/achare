@@ -23,7 +23,7 @@
           ref="mapElement"
           :options="{ attributionControl: false, doubleClickZoom: false }"
           @dblclick="onMapClick"
-          style="position: relative; height: 380px"
+          style="position: relative; "
           :zoom="zoom"
           :center="[
             position.lat || userLocation.lat || defaultLocation.lat,
@@ -222,11 +222,27 @@ async function handleLocateMe() {
     }
   }
 }
-
+:global(.leaflet-container){
+  height: 380px;
+}
 @media screen and (max-width: 768px) {
   .card {
     box-shadow: none;
     border-radius: 0;
+  }
+  :global(.leaflet-container){
+    height: 70vh;
+  }
+}
+
+</style>
+<style>
+.leaflet-container{
+  height: 380px !important;
+}
+@media screen and (max-width: 768px) {
+  .leaflet-container{
+    height: calc(100vh - 190px)!important;
   }
 }
 </style>
