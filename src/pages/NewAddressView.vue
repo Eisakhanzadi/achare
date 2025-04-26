@@ -3,7 +3,7 @@
     class="register-address position-relative gap-4 d-flex flex-column justify-content-between ">
     <div class="container px-0 py-md-5">
       <success-message v-if="currentStepActive == 3" />
-      <div v-show="currentStepActive === 1" class="form-container px-3 py-2 py-md-0  ">
+      <div v-show="currentStepActive === 1" class="form-container px-3 pb-5 pt-2 py-md-0  ">
         <div>
           <h3>ثبت آدرس</h3>
         </div>
@@ -83,8 +83,6 @@
                 </div>
               </div>
             </form>
-
-
           </div>
         </div>
       </div>
@@ -368,10 +366,10 @@ async function fetchData() {
   .register-address {
 
     .footer {
-      //z-index: 1000;
-      //position: fixed;
-      //bottom: 0;
-      //right: 0;
+      z-index: 1000;
+      position: fixed;
+      bottom: 0;
+      right: 0;
 
       button {
         font-size: var(--font-14);
