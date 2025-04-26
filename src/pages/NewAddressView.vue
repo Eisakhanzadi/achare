@@ -18,12 +18,14 @@
                             id="name"
                             title="نام" placeholder="مثال: عیسی" type="text" min-length="3"
                             :validation="validationError.name"
+                            :value="formData['name']"
                             :require-input="false" error="نام باید حداقل دارای 3 کاراکتر باشد" />
                 <form-input @send-data="formData['lastName'] = $event"
                             class="col-12 col-lg-6 col-xl-4"
                             id="last-name"
                             title="نام خانوادگی" placeholder="مثال: رضایی" type="text"
                             min-length="3"
+                            :value="formData['lastName']"
                             :validation="validationError.lastName" :require-input="false"
                             error="نام خانوادگی باید حداقل دارای 3 کاراکتر باشد" />
                 <form-input @send-data="formData['phoneNumber'] = $event"
@@ -32,17 +34,20 @@
                             placeholder="مثال: 09121234567"
                             type="text" min-length="11" :validation="validationError.phoneNumber"
                             :require-input="false"
+                            :value="formData['phoneNumber']"
                             error="شماره وارد شده صحیح نمیباشد" />
                 <form-input @send-data="formData['telephone'] = $event"
                             class="col-12 col-lg-6 col-xl-4"
                             id="telephone"
                             title="شماره تلفن ثابت" placeholder="مثال: 0211234567" type="text"
                             min-length="11"
+                            :value="formData['telephone']"
                             :validation="validationError.telephone" :require-input="true"
                             error="شماره وارد شده صحیح نمیباشد" />
                 <form-input @send-data="formData['address'] = $event"
                             class="col-12 col-lg-12 col-xl-8"
                             id="address"
+                            :value="formData['address']"
                             title="آدرس" placeholder=" " type="text" min-length="10"
                             :validation="validationError.address"
                             :require-input="false"
@@ -116,7 +121,7 @@ import Map from '@/components/newAddress/map.vue'
 
 const mapInfo = ref<object>({})
 const loading = ref<boolean>(false)
-const currentStepActive = ref<number>(2)
+const currentStepActive = ref<number>(1)
 
 onMounted(() => document.title = 'ثبت آدرس')
 
@@ -240,6 +245,7 @@ async function fetchData() {
     )
   } catch (e) {
     console.log(e)
+    alert('درخواست شما با مشکل مواجه شد لطفا لحظاتی دیگر مجددا تلاش کنید')
   } finally {
     loading.value = false
   }
@@ -258,9 +264,9 @@ async function fetchData() {
     min-height: 407px;
 
     h3 {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 32px;
+      font-weight: var(--font-weight-light);;
+      font-size: var(--font-16);
+      line-height:var(--line-height-32);
       color: var(--dark-color);
     }
 
@@ -271,15 +277,15 @@ async function fetchData() {
       backdrop-filter: drop-shadow(0 16px rgba(0, 0, 0, 0.08));
 
       h4 {
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 32px;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-16);
+        line-height:var(--line-height-32);
         color: var(--dark-color);
       }
 
       .gender-title {
-        font-size: 14px;
-        font-weight: 500;
+        font-size: var(--font-14);
+        font-weight: var(--font-weight-medium);
         color: var(--dark-color);
       }
     }
@@ -287,9 +293,9 @@ async function fetchData() {
 
   .map-container {
     .select-address {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 32px;
+      font-size: var(--font-16);
+      font-weight: var(--font-weight-light);;
+      line-height:var(--line-height-32);
       color: var(--dark-color);
     }
   }
@@ -301,9 +307,9 @@ async function fetchData() {
 
     button {
       background-color: var(--primary-color);
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 100%;
+      font-size: var(--font-16);
+      font-weight: var(--font-weight-bold);
+     line-height: var(--line-height-100);
       width: 224px;
       height: 46px;
     }
@@ -321,7 +327,7 @@ async function fetchData() {
 
 .loader {
   color: #FFF;
-  font-size: 7px;
+  font-size: var(--font-7);
   position: relative;
   text-indent: -9999em;
   transform: translateZ(0);
@@ -368,7 +374,7 @@ async function fetchData() {
       //right: 0;
 
       button {
-        font-size: 14px;
+        font-size: var(--font-14);
         width: 90%;
       }
     }

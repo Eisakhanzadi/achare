@@ -43,10 +43,10 @@ onBeforeMount(async () => {
 }
 
 h2 {
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--font-weight-light);;
+  font-size: var(--font-16);
   color: var(--dark-color);
-  line-height: 32px;
+  line-height:var(--line-height-32);
 }
 
 .loader {
@@ -55,7 +55,7 @@ h2 {
   justify-content: center;
   align-items: center;
   position: fixed;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   z-index: 5;
   inset: 0;
   margin: auto;

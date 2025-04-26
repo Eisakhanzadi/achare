@@ -135,13 +135,13 @@ watch(() => validation, () => {
 <style scoped lang="scss">
 label {
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-14);
+  font-weight: var(--font-weight-medium);
   color: var(--dark-color);
 
   span {
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--font-10);
+    font-weight: var(--font-weight-medium);
   }
 }
 
@@ -150,24 +150,24 @@ svg {
 }
 
 span.require {
-  color: var(--dark-gray-color);
-  font-weight: 400;
-  font-size: 10px;
+  color: var(--gray-color-6);
+  font-weight: var(--font-weight-light);;
+  font-size: var(--font-10);
 }
 
 input:not([type="checkbox"]):not([type="radio"]) {
   box-shadow: unset !important;
   border-radius: 5px;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-14);
   vertical-align: middle;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--gray-color-4);
   color: var(--dark-color) !important;
   height: 46px;
   padding-left: 30px;
 
   &:focus {
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--gray-color-4);
   }
 }
 
@@ -181,7 +181,7 @@ button.close {
   left: 8px;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--middle-gray-color);
+  background: var(--gray-color-5);
   transition: 0.2s;
 
   &:active {
@@ -214,9 +214,9 @@ button.close {
 }
 
 .error {
-  font-size: 10px;
-  line-height: 32px;
-  font-weight: 400;
+  font-size: var(--font-10);
+  line-height:var(--line-height-32);
+  font-weight: var(--font-weight-light);;
   color: var(--error-color);
 }
 

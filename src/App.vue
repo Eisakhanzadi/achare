@@ -15,7 +15,7 @@ import Header from '@/components/header/index.vue'
 <style scoped lang="scss">
 
 .outer-container {
-  background: var(--light-color);
+  background: var(--gray-color-7);
 }
 
 

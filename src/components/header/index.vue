@@ -48,9 +48,9 @@ onMounted(() => {
 }
 
 .nav-item {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 100%;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-14);
+ line-height: var(--line-height-100);
   text-align: center;
 }
 

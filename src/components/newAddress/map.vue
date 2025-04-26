@@ -211,9 +211,9 @@ export default {
 
     h6 {
       color: var(--dark-color);
-      font-weight: 700;
-      font-size: 12px;
-      line-height: 32px;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-12);
+      line-height:var(--line-height-32);
     }
   }
 }

@@ -1,30 +1,47 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 @font-face {
-  font-family:number;
+  font-family: number;
   src: url("./fonts/IRANSansXFaNum-Regular.woff2");
 }
+
 @font-face {
-  font-family:vazir;
+  font-family: vazir;
   src: url("./fonts/Vazir.woff2");
 }
-*{
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:number,vazir;
+  font-family: number, vazir;
 }
-:root{
-  --primary-color:#00BFA5;
-  --dark-color:#37474F;
-  --dark-color-2:#323232;
-  --gray-color:#BDBDBD;
-  --border-color:#BDBDBD;
-  --dark-gray-color:#757575;
-  --middle-gray-color:#B6B6B6;
-  --error-color:#E61236;
-  --light-color:#F1F3F4;
-  --gray-color-2:#EDF0F2;
+
+:root {
+  --primary-color: #00BFA5;
+  --dark-color: #37474F;
+  --dark-color-2: #323232;
+  --error-color: #E61236;
+  --gray-color: #BDBDBD;
   --gray-color-1: #9b9b9b;
+  --gray-color-2: #EDF0F2;
   --gray-color-3: #f7f7f7;
+  --gray-color-4: #BDBDBD;
+  --gray-color-5: #B6B6B6;
+  --gray-color-6: #757575;
+  --gray-color-7: #F1F3F4;
+
+  --font-7:7px;
+  --font-10:10px;
+  --font-12:12px;
+  --font-14:14px;
+  --font-16:16px;
+  --font-18:18px;
+
+  --font-weight-bold:700;
+  --font-weight-medium:500;
+  --font-weight-light:400;
+
+  --line-height:32px;
+  --line-height-100:100%;
 }

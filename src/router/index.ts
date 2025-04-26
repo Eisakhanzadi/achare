@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NewAddressView from '../views/NewAddressView.vue'
-import AllAddress from '@/views/AllAddressView.vue'
+import NewAddressView from '@/pages/NewAddressView.vue'
+import AllAddress from '@/pages/AllAddressView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/new-Address',
+      path: '/',
       name: 'newAddress',
       component: NewAddressView,
     },

@@ -14,16 +14,16 @@ const router = useRouter()
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .btn{
   border: 1.5px solid var(--primary-color);
   color: var(--primary-color);
   max-width: 340px;
   height: 48px;
   text-align: center;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 100%;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-16);
+ line-height: var(--line-height-100);
 }
 p{
   span.icon{
