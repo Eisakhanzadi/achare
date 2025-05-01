@@ -119,7 +119,7 @@ import Map from '@/components/newAddress/map.vue'
 
 const mapInfo = ref<object>({})
 const loading = ref<boolean>(false)
-const currentStepActive = ref<number>(2)
+const currentStepActive = ref<number>(1)
 
 onMounted(() => document.title = 'ثبت آدرس')
 
